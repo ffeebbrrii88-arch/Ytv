@@ -85,7 +85,11 @@ class MainActivity : FragmentActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@MainActivity, "Gagal mengekstrak: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Gagal: ${e.javaClass.simpleName}\n${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
