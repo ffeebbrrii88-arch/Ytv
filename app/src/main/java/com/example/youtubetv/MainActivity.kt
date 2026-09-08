@@ -66,10 +66,7 @@ class MainActivity : FragmentActivity() {
                     streamCandidates.add(StreamCandidate(streamInfo.hlsUrl, C.CONTENT_TYPE_HLS))
                 }
 
-                // Diubah dari dashUrl ke dashManifestUrl
-                if (!streamInfo.dashManifestUrl.isNullOrEmpty()) {
-                    streamCandidates.add(StreamCandidate(streamInfo.dashManifestUrl, C.CONTENT_TYPE_DASH))
-                }
+                
 
                 val progressiveStreams = streamInfo.videoStreams
                 if (progressiveStreams.isNotEmpty()) {
