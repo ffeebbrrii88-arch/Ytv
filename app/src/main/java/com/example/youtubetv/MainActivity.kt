@@ -32,7 +32,6 @@ class MainActivity : FragmentActivity() {
 
         playerView = findViewById(R.id.player_view)
 
-        // Initialize Downloader
         val okHttpClient = OkHttpClient.Builder().build()
         NewPipe.init(DownloaderImpl.init(okHttpClient))
 
@@ -63,17 +62,15 @@ class MainActivity : FragmentActivity() {
                 streamCandidates.clear()
                 currentCandidateIndex = 0
 
-                // 1. HLS
                 if (!streamInfo.hlsUrl.isNullOrEmpty()) {
                     streamCandidates.add(StreamCandidate(streamInfo.hlsUrl, C.CONTENT_TYPE_HLS))
                 }
 
-                // 2. DASH
-                if (!streamInfo.dashUrl.isNullOrEmpty()) {
-                    streamCandidates.add(StreamCandidate(streamInfo.dashUrl, C.CONTENT_TYPE_DASH))
+                // Diubah dari dashUrl ke dashManifestUrl
+                if (!streamInfo.dashManifestUrl.isNullOrEmpty()) {
+                    streamCandidates.add(StreamCandidate(streamInfo.dashManifestUrl, C.CONTENT_TYPE_DASH))
                 }
 
-                // 3. Progressive MP4
                 val progressiveStreams = streamInfo.videoStreams
                 if (progressiveStreams.isNotEmpty()) {
                     val bestMp4Url = progressiveStreams.last().content
