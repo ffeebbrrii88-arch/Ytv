@@ -50,7 +50,7 @@ class DownloaderImpl private constructor(private val client: OkHttpClient) : Dow
             response.message,
             response.headers.toMultimap(),
             responseBody,
-            request.latestUrl
+            url // <-- Diubah dari request.latestUrl ke url
         )
     }
 }
